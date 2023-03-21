@@ -26,7 +26,41 @@ public class Controller {
         this.view.subtractCreateListener(new SubtractListener());
         this.view.multiplyCreateListener(new MultiplyListener());
         this.view.divideCreateListener(new DivideListener());
+        this.view.integrateCreateListener(new IntegrateListener());
+        this.view.derivateCreateListener(new DerivateListener());
 
+    }
+    class IntegrateListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            read();
+
+            result = polynom1.integrate();
+
+            String rezultat = new String();
+            rezultat = transformareRezultat();
+
+
+            view.setResultTextArea(rezultat + "+C");
+        }
+    }
+    class DerivateListener implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            read();
+            System.out.println("DERIVATE");
+
+            result = polynom1.derivate();
+
+            String rezultat = new String();
+            rezultat = transformareRezultat();
+
+            view.setResultTextArea(rezultat);
+        }
     }
     class DivideListener implements ActionListener
     {
@@ -43,7 +77,14 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            read();
 
+            result = polynom1.multiply(polynom2);
+
+            String rezultat = new String();
+            rezultat = transformareRezultat();
+
+            view.setResultTextArea(rezultat);
         }
     }
     class SubtractListener implements ActionListener
@@ -51,7 +92,14 @@ public class Controller {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            read();
 
+            result = polynom1.subtract(polynom2);
+
+            String rezultat = new String();
+            rezultat = transformareRezultat();
+
+            view.setResultTextArea(rezultat);
         }
     }
     class AdditionListener implements ActionListener
@@ -74,16 +122,7 @@ public class Controller {
 
             */
             String afisat = new String();
-
-            for (Map.Entry<Integer,Double> var : result.getMap().entrySet())
-            {
-                if (var.getValue() > 0)
-                    afisat = "+" + var.getValue() + "x^" + var.getKey() + afisat;
-                else
-                    afisat = var.getValue() + "x^" + var.getKey() + afisat;
-
-             //   System.out.println(var.getKey() + "    " + var.getValue());
-            }
+            afisat = transformareRezultat();
 
             view.setResultTextArea(afisat);
             //System.out.println(afisat);
@@ -101,8 +140,36 @@ public class Controller {
 
         }
     }*/
+    String transformareRezultat()
+    {
+        String afisat = new String();
 
+        for (Map.Entry<Integer,Double> var : result.getMap().entrySet())
+        {
+            if (var.getKey() == 1)
+                afisat = var.getValue() + "x" + afisat;
+            else if (var.getKey() != 0)
+                afisat = var.getValue() + "x^" + var.getKey() + afisat;
+            else
+                afisat = var.getValue() + afisat;
 
+            if (var.getValue() > 0)
+                afisat = "+" + afisat;
+        }
+        if (afisat.length() == 0)
+            return "0";
+
+        if (afisat.charAt(0) == '+')
+        {
+            StringBuilder stringBuilder = new StringBuilder(afisat);
+            stringBuilder.deleteCharAt(0);
+            String newString = stringBuilder.toString();
+
+            return newString;
+        }
+
+        return afisat;
+    }
     void read()
     {
         this.polynom1 = new Polynom();
@@ -152,12 +219,16 @@ public class Controller {
 
                     if (intermediar.size() == 1) {
                         pow = 1;
-                        coeff = Double.parseDouble(intermediar.get(0));
+
 
                     } else {
                         pow = Integer.parseInt(intermediar.get(2));
-                        coeff = Double.parseDouble(intermediar.get(0));
+
                     }
+                    if (intermediar.get(0) == "")
+                        coeff = 1;
+                    else
+                    coeff = Double.parseDouble(intermediar.get(0));
                 }
 
 

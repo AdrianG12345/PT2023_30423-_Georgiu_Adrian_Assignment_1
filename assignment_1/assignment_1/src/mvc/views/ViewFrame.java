@@ -15,10 +15,12 @@ public class ViewFrame extends JFrame {
     private JButton multiplyButton;
     private JButton divideButton;
     private JTextArea resultTextArea;
+    private JButton derivateButton;
+    private JButton integrateButton;
 
     public ViewFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 950, 496);
+        setBounds(100, 100, 1010, 626);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -32,21 +34,21 @@ public class ViewFrame extends JFrame {
 
         addButton = new JButton("Add polynoms");
         addButton.setFont(new Font("Tahoma", Font.PLAIN, 44));
-        addButton.setBounds(559, 118, 350, 65);
+        addButton.setBounds(559, 118, 365, 65);
         contentPane.add(addButton);
 
         subtractButton = new JButton("Subtract Polynoms");
         subtractButton.setFont(new Font("Tahoma", Font.PLAIN, 31));
-        subtractButton.setBounds(559, 182, 307, 88);
+        subtractButton.setBounds(559, 182, 365, 88);
         contentPane.add(subtractButton);
 
         multiplyButton = new JButton("Multiply Polynoms\r\n");
         multiplyButton.setFont(new Font("Tahoma", Font.PLAIN, 29));
-        multiplyButton.setBounds(559, 268, 307, 70);
+        multiplyButton.setBounds(559, 268, 365, 70);
         contentPane.add(multiplyButton);
 
         divideButton = new JButton("Divide Polynoms");
-        divideButton.setBounds(559, 337, 307, 70);
+        divideButton.setBounds(559, 337, 365, 70);
         contentPane.add(divideButton);
 
         firstTextField = new JTextField();
@@ -77,6 +79,16 @@ public class ViewFrame extends JFrame {
         resultTextArea = new JTextArea();
         resultTextArea.setBounds(10, 337, 548, 39);
         contentPane.add(resultTextArea);
+
+        derivateButton = new JButton("Derivate 1st Polynom");
+        derivateButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+        derivateButton.setBounds(559, 403, 365, 65);
+        contentPane.add(derivateButton);
+
+        integrateButton = new JButton("Integrate 1st Polynom");
+        integrateButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
+        integrateButton.setBounds(559, 464, 365, 65);
+        contentPane.add(integrateButton);
 
 
         this.setVisible(true);
@@ -130,6 +142,15 @@ public class ViewFrame extends JFrame {
     {
         divideButton.addActionListener(action);
     }
+    public void derivateCreateListener(ActionListener action)
+    {
+        derivateButton.addActionListener(action);
+    }
+    public void integrateCreateListener(ActionListener action)
+    {
+        integrateButton.addActionListener(action);
+    }
+
 
     public void showMessage(String message)
     {
