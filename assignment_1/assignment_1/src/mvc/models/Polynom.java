@@ -5,18 +5,17 @@ import java.util.Map;
 
 public class Polynom {
 
-    private Map<Integer,Double> map = new HashMap<>();
+    private Map<Integer,Double> map;
 
     public Polynom() {
-
-
+        this.map = new HashMap<>();
     }
 
     public Polynom(Map<Integer, Double> map) {
         this.map = map;
     }
 
-    public void add(int power, double coeff)
+    public void add(int power, double coeff)///adds a Monom to the polynom
     {
         if(map.containsKey(power))
         {
@@ -28,7 +27,6 @@ public class Polynom {
         }
         else
             map.put(power, coeff);
-
     }
 
     public Map<Integer, Double> getMap() {

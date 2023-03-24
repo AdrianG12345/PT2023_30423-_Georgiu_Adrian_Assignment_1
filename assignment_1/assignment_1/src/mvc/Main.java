@@ -12,8 +12,6 @@ public class Main {
         Controller controller = new Controller(view);
 
 
-
-
         //-5.7x^6+2x^2-3.2x^1+3
 
 

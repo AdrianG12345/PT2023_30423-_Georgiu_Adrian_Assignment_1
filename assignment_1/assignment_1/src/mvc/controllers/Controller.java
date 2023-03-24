@@ -52,7 +52,6 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             read();
-            System.out.println("DERIVATE");
 
             result = polynom1.derivate();
 
@@ -156,6 +155,7 @@ public class Controller {
             if (var.getValue() > 0)
                 afisat = "+" + afisat;
         }
+
         if (afisat.length() == 0)
             return "0";
 
@@ -228,7 +228,7 @@ public class Controller {
                     if (intermediar.get(0) == "")
                         coeff = 1;
                     else
-                    coeff = Double.parseDouble(intermediar.get(0));
+                        coeff = Double.parseDouble(intermediar.get(0));
                 }
 
 
@@ -266,12 +266,16 @@ public class Controller {
 
                     if (intermediar.size() == 1) {
                         pow = 1;
-                        coeff = Double.parseDouble(intermediar.get(0));
+
 
                     } else {
                         pow = Integer.parseInt(intermediar.get(2));
-                        coeff = Double.parseDouble(intermediar.get(0));
+
                     }
+                    if (intermediar.get(0) == "")
+                        coeff = 1;
+                    else
+                        coeff = Double.parseDouble(intermediar.get(0));
                 }
 
 
@@ -286,5 +290,6 @@ public class Controller {
         }*/
     }
 
+    
 
 }
